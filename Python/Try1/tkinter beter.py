@@ -2,7 +2,7 @@ from threading import Timer
 from tkinter import *
 from tkinter import simpledialog
 from functools import partial
-
+import subprocess
 
 def printen():
     print("Inloggen")
@@ -132,15 +132,12 @@ class NumPad():
         self.writeStatus('1')
         self.loopt = False
 
-class login(simpledialog.Dialog):
+class login():
     def __init__(self):
-        print('Hello')
-        self.toggleKeyboard()
-        #self.createWidgets()
-    def toggleKeyboard(self):
         p = subprocess.Popen(['florence show'], shell=True, stdout= subprocess.PIPE, stderr= subprocess.PIPE, universal_newlines=True)
         if not "" == p.stderr.readline():
             subprocess.Popen(['florence'], shell=True)
+
 
 
 
