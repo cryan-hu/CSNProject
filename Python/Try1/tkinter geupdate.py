@@ -1,10 +1,11 @@
 from threading import Timer
 from tkinter import *
+from tkinter import simpledialog
 from functools import partial
+import subprocess
 
 
-def printen():
-    print("Inloggen")
+
 
 class NumPad():
     def __init__(self, master):
@@ -45,7 +46,7 @@ class NumPad():
         for label in btn_list:
             cmd = lambda x = label: self.enter(x)
             self.btn[n] = Button(kp,bg="black", fg="white", text=label, width=12, height=6, font=('Courier',20), command=cmd)
-            self.btn[9] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=('Courier',20), command=printen)
+            self.btn[9] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=('Courier',20), command=self.printen)
             self.btn[11] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=('Courier',20), command=self.clear)
             self.btn[n].grid(row=r, column=c)
             n+=1
@@ -103,6 +104,19 @@ class NumPad():
     def alarmAf(self):
         self.tekstvar2.set('HET ALARM GAAT AF! Politie onderweg!')         #Bericht naar andere PI als zijnde Politie?
         self.tekstvar.set('Voer de alarmcode in om het alarm uit te zetten!')
+    def printen(self):
+        new = login()
+
+
+class login(simpledialog.Dialog):
+    def __init__(self):
+        print('Hello')
+        self.toggleKeyboard()
+        #self.createWidgets()
+    def toggleKeyboard(self):
+        p = subprocess.Popen(['florence show'], shell=True, stdout= subprocess.PIPE, stderr= subprocess.PIPE, universal_newlines=True)
+        if not "" == p.stderr.readline():
+            subprocess.Popen(['florence'], shell=True)
 
 
 root = Tk()

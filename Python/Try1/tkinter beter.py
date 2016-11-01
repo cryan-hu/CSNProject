@@ -1,5 +1,6 @@
 from threading import Timer
 from tkinter import *
+from tkinter import simpledialog
 from functools import partial
 
 
@@ -49,7 +50,7 @@ class NumPad():
         for label in btn_list:
             cmd = lambda x = label: self.enter(x)
             self.btn[n] = Button(kp,bg="black", fg="white", text=label, width=12, height=6, font=('Courier',20), command=cmd)
-            self.btn[9] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=('Courier',20), command=printen)
+            self.btn[9] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=('Courier',20), command=login)
             self.btn[11] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=('Courier',20), command=self.clear)
             self.btn[n].grid(row=r, column=c)
             n+=1
@@ -130,6 +131,16 @@ class NumPad():
         self.tekstvar.set("Het systeem is ingeschakeld!")
         self.writeStatus('1')
         self.loopt = False
+
+class login(simpledialog.Dialog):
+    def __init__(self):
+        print('Hello')
+        self.toggleKeyboard()
+        #self.createWidgets()
+    def toggleKeyboard(self):
+        p = subprocess.Popen(['florence show'], shell=True, stdout= subprocess.PIPE, stderr= subprocess.PIPE, universal_newlines=True)
+        if not "" == p.stderr.readline():
+            subprocess.Popen(['florence'], shell=True)
 
 
 
