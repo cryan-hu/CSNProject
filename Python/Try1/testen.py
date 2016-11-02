@@ -1,6 +1,7 @@
 from threading import Timer
 from tkinter import *
 from tkinter import simpledialog
+import csv
 
 
 class NumPad():
@@ -12,6 +13,13 @@ class NumPad():
         self.status = self.leesStatus()
         self.fontToetsen = ('Courier',16)
         self.fontTekst = ('Courier',12)
+        self.wwen = []
+        self.gebruikers = []
+        with open('gebruikers.csv','r') as file:
+            lees =  csv.reader(file, delimiter=';')
+            for rij in lees:
+                self.wwen.append(rij[1])
+                self.gebruikers.append(rij[0])
         self.createFrames()
     def createFrames(self):
         frame = Frame(self.master)
@@ -131,24 +139,25 @@ class NumPad():
         self.tekstvar.set("Het systeem is ingeschakeld!")
         self.writeStatus('1')
         self.loopt = False
-    def login(self):
-        print("Inloggen")
 
     def inloggen(self):
-        toplevel = Toplevel()
-        label1 = Label(toplevel, text="Gebruiker:")
-        label1.pack()
-        entry1 =Entry(toplevel)
-        entry1.pack()
-        label2 = Label(toplevel, text="Wachtwoord:")
-        label2.pack()
-        entry2 =Entry(toplevel)
-        entry2.pack()
-        button1 = Button(toplevel,text="Log in", command=self.verifieer)
-        button1.pack()
-    def verifieer(self):
-        print('hallo')
+        self.toplevel = Toplevel()
+        self.loginLabel = StringVar(value="Log in om alarminstellingen te veranderen")
+        label1 = Label(self.toplevel, textvariable=self.loginLabel).grid(row=0,columnspan=2)
+        label2 = Label(self.toplevel, text="Gebruiker:").grid(row=1,column=0)
+        self.gebruikerVar = StringVar()
+        entry1 =Entry(self.toplevel, textvariable=self.gebruikerVar).grid(row=1,column=1)
+        label2 = Label(self.toplevel, text="Wachtwoord:").grid(row=2,column=0)
+        self.wwVar = StringVar()
+        entry2 =Entry(self.toplevel,show="*", textvariable=self.wwVar).grid(row=2,column=1)
+        button1 = Button(self.toplevel,text="Log in", command=self.verifieer).grid(row=3,columnspan=2)
 
+    def verifieer(self):
+        if self.gebruikerVar.get() in self.gebruikers and self.wwVar.get() == self.wwen[self.gebruikers.index(self.gebruikerVar.get())]:
+            print("Gebruiker {} succesvol ingelogt!".format(self.gebruikerVar.get()))
+            self.toplevel.destroy()
+        else:
+            self.loginLabel.set("Verkeerd wachtwoord en/of gebruikersnaam!")
 
 root = Tk()
 numpad = NumPad(root)
