@@ -141,24 +141,43 @@ class NumPad():
         self.loopt = False
 
     def inloggen(self):
-        self.toplevel = Toplevel()
+        self.loginVenster = Toplevel()
         self.loginLabel = StringVar(value="Log in om alarminstellingen te veranderen")
-        label1 = Label(self.toplevel, textvariable=self.loginLabel).grid(row=0,columnspan=2)
-        label2 = Label(self.toplevel, text="Gebruiker:").grid(row=1,column=0)
-        self.gebruikerVar = StringVar()
-        entry1 =Entry(self.toplevel, textvariable=self.gebruikerVar).grid(row=1,column=1)
-        label2 = Label(self.toplevel, text="Wachtwoord:").grid(row=2,column=0)
-        self.wwVar = StringVar()
-        entry2 =Entry(self.toplevel,show="*", textvariable=self.wwVar).grid(row=2,column=1)
-        button1 = Button(self.toplevel,text="Log in", command=self.verifieer).grid(row=3,columnspan=2)
+        label1 = Label(self.loginVenster, textvariable=self.loginLabel).grid(row=0,columnspan=2)
+        label2 = Label(self.loginVenster, text="Gebruiker:").grid(row=1,column=0)
+        self.gebruikerVar = StringVar(value="jorrit")
+        entry1 =Entry(self.loginVenster, textvariable=self.gebruikerVar).grid(row=1,column=1)
+        label2 = Label(self.loginVenster, text="Wachtwoord:").grid(row=2,column=0)
+        self.wwVar = StringVar(value="pizza")
+        entry2 =Entry(self.loginVenster,show="*", textvariable=self.wwVar).grid(row=2,column=1)
+        button1 = Button(self.loginVenster,text="Log in", command=self.verifieer).grid(row=3,columnspan=2)
 
     def verifieer(self):
         if self.gebruikerVar.get() in self.gebruikers and self.wwVar.get() == self.wwen[self.gebruikers.index(self.gebruikerVar.get())]:
-            print("Gebruiker {} succesvol ingelogt!".format(self.gebruikerVar.get()))
-            self.toplevel.destroy()
+            self.ingelogd()
         else:
             self.loginLabel.set("Verkeerd wachtwoord en/of gebruikersnaam!")
 
+    def ingelogd(self):
+            print("Gebruiker {} succesvol ingelogt!".format(self.gebruikerVar.get()))
+            self.master.withdraw()
+            self.loginVenster.destroy()
+            self.veranderVenster = Toplevel()
+            self.veranderVenster.geometry("400x400")
+            self.createVerander()
+
+    def createVerander(self):
+        testalarm = Button(self.veranderVenster,text="Test Alarm", width=10, height=3).grid(row=0,column=0)
+        verander1 = Button(self.veranderVenster,text="Verander1", width=10, height=3).grid(row=0,column=1)
+        verander2 = Button(self.veranderVenster,text="Verander2", width=10, height=3).grid(row=0,column=2)
+        terug = Button(self.veranderVenster,text="Terug", command=self.terug).grid(columnspan=3)
+
+    def terug(self):
+        self.veranderVenster.destroy()
+        self.master.update()
+        self.master.deiconify()
+
 root = Tk()
+root.geometry("570x750")
 numpad = NumPad(root)
 root.mainloop()
