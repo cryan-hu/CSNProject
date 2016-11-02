@@ -8,18 +8,17 @@ class NumPad():
     def __init__(self, master):
         self.loopt = False
         self.master = master
-        self.master.title("Alarm Systeem")
+
         self.tien = NONE
         self.status = self.leesStatus()
         self.fontToetsen = ('Courier',16)
         self.fontTekst = ('Courier',12)
         self.wwen = []
         self.gebruikers = []
-        with open('gebruikers.csv','r') as file:
-            lees =  csv.reader(file, delimiter=';')
-            for rij in lees:
-                self.wwen.append(rij[1])
-                self.gebruikers.append(rij[0])
+        self.snelheid = IntVar()
+
+        self.master.title("Alarm Systeem")
+        self.leesCsv()
         self.createFrames()
     def createFrames(self):
         frame = Frame(self.master)
@@ -170,12 +169,40 @@ class NumPad():
         testalarm = Button(self.veranderVenster,text="Test Alarm", width=10, height=3).grid(row=0,column=0)
         verander1 = Button(self.veranderVenster,text="Verander1", width=10, height=3).grid(row=0,column=1)
         verander2 = Button(self.veranderVenster,text="Verander2", width=10, height=3).grid(row=0,column=2)
+        SNELHEID = [
+            ("Langzaam", "1"),
+            ("Normaal", "2"),
+            ("Snel", "3"),
+        ]
+        i = 0
+        b = list(range(len(SNELHEID)))
+        for text, mode in SNELHEID:
+            b[i] = Radiobutton(self.veranderVenster, text=text,variable=self.snelheid, value=mode, width=10, height=3)
+            b[i].grid(row=1,column=i)
+            i += 1
+        Radiobutton.select(b[1])
         terug = Button(self.veranderVenster,text="Terug", command=self.terug).grid(columnspan=3)
 
     def terug(self):
+        selected = self.snelheid.get()
+        if selected == 1:
+            print("Radiobutton {} geselecteerd".format(selected)) #sla de geselecteerde knop op
+        elif selected == 2:
+            print("Radiobutton {} geselecteerd".format(selected))
+        elif selected == 3:
+            print("Radiobutton {} geselecteerd".format(selected))
+        print("Instellingen opgeslagen")
         self.veranderVenster.destroy()
         self.master.update()
         self.master.deiconify()
+
+    def leesCsv(self):
+        with open('gebruikers.csv','r') as file:
+            lees =  csv.reader(file, delimiter=';')
+            for rij in lees:
+                self.wwen.append(rij[1])
+                self.gebruikers.append(rij[0])
+
 
 root = Tk()
 root.geometry("570x750")
