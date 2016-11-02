@@ -1,5 +1,6 @@
 from threading import Timer
 from tkinter import *
+from tkinter import simpledialog
 
 
 class NumPad():
@@ -49,7 +50,7 @@ class NumPad():
         for label in btn_list:
             cmd = lambda x = label: self.enter(x)
             self.btn[n] = Button(kp,bg="black", fg="white", text=label, width=12, height=6, font=self.fontToetsen, command=cmd)
-            self.btn[9] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=self.fontToetsen, command=inloggen)
+            self.btn[9] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=self.fontToetsen, command=self.inloggen)
             self.btn[11] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=self.fontToetsen, command=self.clear)
             self.btn[n].grid(row=r, column=c)
             n+=1
@@ -133,9 +134,20 @@ class NumPad():
     def login(self):
         print("Inloggen")
 
-class inloggen():
-    def __init__(self):
-        print("Inloggen")
+    def inloggen(self):
+        toplevel = Toplevel()
+        label1 = Label(toplevel, text="Gebruiker:")
+        label1.pack()
+        entry1 =Entry(toplevel)
+        entry1.pack()
+        label2 = Label(toplevel, text="Wachtwoord:")
+        label2.pack()
+        entry2 =Entry(toplevel)
+        entry2.pack()
+        button1 = Button(toplevel,text="Log in", command=self.verifieer)
+        button1.pack()
+    def verifieer(self):
+        print('hallo')
 
 
 root = Tk()
