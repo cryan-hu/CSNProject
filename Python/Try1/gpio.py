@@ -57,7 +57,7 @@ class NumPad():
         self.tekst2 = Label(frame, font=self.fontTekst, textvariable=self.tekstvar2).pack(fill=X)
 
         self.entrybox = StringVar()
-        self.inputBox = Entry(frame, font=('Courier',30),textvariable=self.entrybox).pack(padx=14,fill=X)
+        self.inputBox = Entry(frame, font=('Courier',30),show="*",textvariable=self.entrybox).pack(padx=14,fill=X)
 
         #self.moveButton = Button(frame,bg="red", fg="white", text="!!!TRIGGER!!!", width=7, font=self.fontTekst, command=self.beweging).pack()
 
