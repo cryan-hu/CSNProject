@@ -12,7 +12,7 @@ class NumPad():
         self.tien = NONE
         self.status = self.leesStatus()
         self.fontToetsen = ('Courier',16)
-        self.fontTekst = ('Courier',12)
+        self.fontTekst = ('Courier',10)
         self.wwen = []
         self.gebruikers = []
         self.snelheid = IntVar()
@@ -39,7 +39,7 @@ class NumPad():
         self.tekst2 = Label(frame, font=self.fontTekst, textvariable=self.tekstvar2).pack(fill=X)
 
         self.entrybox = StringVar()
-        self.inputBox = Entry(frame, font=('Courier',16),textvariable=self.entrybox).pack(padx=14,fill=X)
+        self.inputBox = Entry(frame, font=('Courier',30),textvariable=self.entrybox,).pack(padx=14,fill=X)
 
         self.moveButton = Button(frame,bg="red", fg="white", text="!!!TRIGGER!!!", width=7, font=self.fontTekst, command=self.beweging).pack()
 
@@ -56,9 +56,9 @@ class NumPad():
         self.btn = list(range(len(btn_list)))
         for label in btn_list:
             cmd = lambda x = label: self.enter(x)
-            self.btn[n] = Button(kp,bg="black", fg="white", text=label, width=12, height=6, font=self.fontToetsen, command=cmd)
-            self.btn[9] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=self.fontToetsen, command=self.inloggen)
-            self.btn[11] = Button(kp,bg="red", fg="white", text=label, width=12, height=6, font=self.fontToetsen, command=self.clear)
+            self.btn[n] = Button(kp,bg="black", fg="white", text=label, width=10, height=5, font=self.fontToetsen, command=cmd)
+            self.btn[9] = Button(kp,bg="red", fg="white", text=label, width=10, height=5, font=self.fontToetsen, command=self.inloggen)
+            self.btn[11] = Button(kp,bg="red", fg="white", text=label, width=10, height=5, font=self.fontToetsen, command=self.clear)
             self.btn[n].grid(row=r, column=c)
             n+=1
             c+=1
@@ -205,6 +205,6 @@ class NumPad():
 
 
 root = Tk()
-root.geometry("570x750")
+root.geometry("480x800")
 numpad = NumPad(root)
 root.mainloop()
