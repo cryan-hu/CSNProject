@@ -253,6 +253,6 @@ class NumPad():
 
 
 root = Tk()
-root.geometry("800x480")
+root.geometry("480x800")
 numpad = NumPad(root)
 root.mainloop()

@@ -78,11 +78,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testen.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="testen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Try1/testen.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1496">
               <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gpio.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Try1/gpio.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="255" column="22" selection-start-line="255" selection-start-column="22" selection-end-line="255" selection-end-column="22" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -120,16 +132,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gebruikers.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Try1/gebruikers.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -162,6 +164,7 @@
         <option value="$PROJECT_DIR$/Try1/meer.py" />
         <option value="$PROJECT_DIR$/Try1/connect.py" />
         <option value="$PROJECT_DIR$/Try1/testen.py" />
+        <option value="$PROJECT_DIR$/Try1/gpio.py" />
       </list>
     </option>
   </component>
@@ -552,14 +555,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PiLarm-master/keypadd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Try1/gebruikers.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -898,6 +893,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1496">
           <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Try1/gpio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="255" column="22" selection-start-line="255" selection-start-column="22" selection-end-line="255" selection-end-column="22" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
