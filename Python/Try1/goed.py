@@ -253,7 +253,7 @@ class NumPad():
                 self.gebruikers.append(rij[0])
 
     def writeSnelheid(self,x):
-        self.alarmSnelheid.set(int(x))
+        self.alarmSnelheid.set(x)
         with open("snelheid,.txt",'w') as file:
             file.write(self.alarmSnelheid)
 
