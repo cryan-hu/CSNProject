@@ -227,7 +227,7 @@ class NumPad():
         i = 0
         b = list(range(len(SNELHEID)))
         for text, mode in SNELHEID:
-            b[i] = Radiobutton(self.veranderVenster, text=text,variable=self.snelheid, value=mode, width=10, height=3, command= lambda x = mode : self.alarmSnelheid.set(int(mode)))
+            b[i] = Radiobutton(self.veranderVenster, text=text,variable=self.snelheid, value=mode, width=10, height=3, command= lambda x = int(mode) : self.writeSnelheid(x))
             b[i].grid(row=1,column=i)
             i += 1
         if self.alarmSnelheid == 250:
@@ -251,6 +251,11 @@ class NumPad():
             for rij in lees:
                 self.wwen.append(rij[1])
                 self.gebruikers.append(rij[0])
+
+    def writeSnelheid(self,x):
+        self.alarmSnelheid.set(x)
+        with open("snelheid,.txt",'w') as file:
+            file.write(self.alarmSnelheid)
 
 
 
