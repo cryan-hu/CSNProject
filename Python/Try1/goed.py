@@ -230,11 +230,11 @@ class NumPad():
             b[i] = Radiobutton(self.veranderVenster, text=text,variable=self.snelheid, value=mode, width=10, height=3, command= lambda x=mode: self.writeSnelheid(x))
             b[i].grid(row=1,column=i)
             i += 1
-        if self.alarmSnelheid == 250:
+        if self.alarmSnelheid.get() == 250:
             Radiobutton.select(b[2])
-        elif self.alarmSnelheid == 500:
+        elif self.alarmSnelheid.get() == 500:
             Radiobutton.select(b[1])
-        elif self.alarmSnelheid == 1000:
+        elif self.alarmSnelheid.get() == 1000:
             Radiobutton.select(b[0])
 
         terug = Button(self.veranderVenster,text="Terug", command=self.terug).grid(columnspan=3)
